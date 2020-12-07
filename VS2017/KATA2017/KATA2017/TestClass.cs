@@ -72,5 +72,27 @@ namespace TDDKata
             Assert.That(actual, Is.EqualTo(expected));
         }
 
+        [Test]
+        public void SumShuldBeStartWithSpatialSeparator()
+        {
+            StringCalc stringCalc = new StringCalc();
+            string str = "//1,4\n5";
+            int expected = 10;
+            int actual = stringCalc.Sum(str);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void SumShuldBeStartWithOUTSpatialSeparatorPutFailString()
+        {
+            StringCalc stringCalc = new StringCalc();
+            string str = "1,4\n5*7.";
+            int expected = -1;
+            int actual = stringCalc.Sum(str);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
     }
 }

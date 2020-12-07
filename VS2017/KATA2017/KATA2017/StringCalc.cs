@@ -15,14 +15,28 @@ namespace TDDKata
             
             string[] s = new string[] { ",", "\n" };
 
-           
-            //int[] numbers = v.Split(',').Select(int.Parse).ToArray();
+            string[]s2=new string[] { ",", "\n","//","*","." };
 
-            int[] numbers = v.Split(s, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            bool IsContains = v.Contains("//");
+
+            
+
+            int[] numbers;
+
+         
 
 
-            //if (numbers.Count() > 2)
-            //    return -1;
+            if (IsContains)
+            {
+                numbers = v.Split(s2, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            }
+            else
+            {
+                
+                numbers = v.Split(s, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            }
+           // int[] numbers = v.Split(s, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            
 
             for (int i = 0; i < numbers.Length; i++)
             {
