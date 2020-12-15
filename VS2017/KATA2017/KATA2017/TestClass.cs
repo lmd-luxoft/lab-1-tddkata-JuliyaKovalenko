@@ -9,32 +9,30 @@ namespace TDDKata
     [TestFixture]
     public class TestClass
     {
-        [Test]
-        public void SimpleTest()
-        {
-            StringCalc calc = new StringCalc();
-            int value = calc.Sum("2,2");
-            Assert.That(value, Is.EqualTo(4), "Wrong actual value");
-        }
 
         [Test]
         public void SumShouldBeCorrect()
         {
-            StringCalc stringCalc = new StringCalc();
             string str = "0,1";
+            PrapereMassiv massiv = new PrapereMassiv(str);
+            StringCalc stringCalc = new StringCalc(massiv);
+
             int expected = 1;
 
-            int actual = stringCalc.Sum(str);
+            int actual = stringCalc.Sum(massiv);
             Assert.That(actual, Is.EqualTo(expected));
         }
 
         [Test]
         public void SumShouldBeStringIsEmpty()
         {
-            StringCalc stringCalc = new StringCalc();
             string str = "";
+            PrapereMassiv massiv = new PrapereMassiv(str);
+            StringCalc stringCalc = new StringCalc(massiv);
+
             int expected = 0;
-            int actual = str.Length;
+
+            int actual = stringCalc.Sum(massiv);
             Assert.That(actual, Is.EqualTo(expected));
 
         }
@@ -42,32 +40,29 @@ namespace TDDKata
         [Test]
         public void SumShouldBeNotHaveNegative()
         {
-            StringCalc stringCalc = new StringCalc();
             string str = "-1,2,3";
+            PrapereMassiv massiv = new PrapereMassiv(str);
+            StringCalc stringCalc = new StringCalc(massiv);
+
             int expected = -1;
-            int actual = stringCalc.Sum(str);
+
+            int actual = stringCalc.Sum(massiv);
 
             Assert.That(actual, Is.EqualTo(expected));
         }
 
-        //[Test]
-        //public void SumShoulHaveLessThan3Nubers()
-        //{
-        //    StringCalc stringCalc = new StringCalc();
-        //    string str = "1,2,3,4,5";
-        //    int expected = -1;
-        //    int actual = stringCalc.Sum(str);
 
-        //    Assert.That(actual, Is.EqualTo(expected));
-        //}
 
         [Test]
         public void SumCanHaveDifferents2LSeparators()
         {
-            StringCalc stringCalc = new StringCalc();
             string str = "1,4\n5";
+            PrapereMassiv massiv = new PrapereMassiv(str);
+            StringCalc stringCalc = new StringCalc(massiv);
+
             int expected = 10;
-            int actual = stringCalc.Sum(str);
+
+            int actual = stringCalc.Sum(massiv);
 
             Assert.That(actual, Is.EqualTo(expected));
         }
@@ -75,10 +70,14 @@ namespace TDDKata
         [Test]
         public void SumShuldBeStartWithSpatialSeparator()
         {
-            StringCalc stringCalc = new StringCalc();
+
             string str = "//1,4\n5";
+            PrapereMassiv massiv = new PrapereMassiv(str);
+            StringCalc stringCalc = new StringCalc(massiv);
+
             int expected = 10;
-            int actual = stringCalc.Sum(str);
+
+            int actual = stringCalc.Sum(massiv);
 
             Assert.That(actual, Is.EqualTo(expected));
         }
@@ -86,10 +85,14 @@ namespace TDDKata
         [Test]
         public void SumShuldBeStartWithOUTSpatialSeparatorPutFailString()
         {
-            StringCalc stringCalc = new StringCalc();
+
             string str = "1,4\n5*7.";
+            PrapereMassiv massiv = new PrapereMassiv(str);
+            StringCalc stringCalc = new StringCalc(massiv);
+
             int expected = -1;
-            int actual = stringCalc.Sum(str);
+
+            int actual = stringCalc.Sum(massiv);
 
             Assert.That(actual, Is.EqualTo(expected));
         }
